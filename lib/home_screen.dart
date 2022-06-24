@@ -1,6 +1,8 @@
+import 'package:block_cubit_example/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'controller/cubits/home_page_controller_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -13,23 +15,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
+        width: 1.sw,                /// sw= 100% 1*100%
+        height: 1.sh,
         color: Colors.white,
         child: PageView(
           controller: controller,
           onPageChanged: (x) {
-            context.read<HomePageControllerCubit>()
-                .changePageIndex(index: x);
+            context.read<HomePageControllerCubit>().changePageIndex(index: x);
           },
           children: [
+            const AnimationArea(),
             Container(
-              color: Colors.yellow,
-              child: const Center(
-                child: Text("Home"),
-              ),
-            ),
-            Container(
+              height: 0.1.sh,
               color: Colors.lightBlueAccent,
               child: const Center(
                 child: Text("Profile"),
@@ -86,3 +83,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
